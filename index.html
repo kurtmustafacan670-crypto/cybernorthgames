@@ -14,7 +14,8 @@
         }
 
         body {
-            background: radial-gradient(circle at top, #1f0836 0%, #090312 65%, #040108 100%);
+            background: linear-gradient(rgba(9, 3, 18, 0.85), rgba(4, 1, 8, 0.95)), url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
             font-family: 'Rajdhani', sans-serif;
             min-height: 100vh;
@@ -27,7 +28,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 22px 8%;
-            background: rgba(9, 3, 18, 0.8);
+            background: rgba(9, 3, 18, 0.85);
             border-bottom: 1px solid rgba(255, 0, 127, 0.25);
             position: sticky;
             top: 0;
@@ -63,18 +64,17 @@
         /* Ana Hero Alanı */
         .hero {
             text-align: center;
-            padding: 70px 20px 50px;
+            padding: 60px 20px 40px;
             position: relative;
         }
 
-        /* Retro Güneş Efekti */
         .retro-sun {
             width: 240px;
             height: 240px;
             border-radius: 50%;
             background: linear-gradient(180deg, #ffbe0b 0%, #ff007f 60%, #8338ec 100%);
             position: absolute;
-            top: 45px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0.22;
@@ -91,7 +91,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             position: relative;
             z-index: 1;
             box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
@@ -99,10 +99,10 @@
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(28px, 4.5vw, 50px);
             font-weight: 900;
             line-height: 1.15;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
             text-shadow: 0 0 25px rgba(255, 0, 127, 0.8), 0 0 45px rgba(255, 0, 127, 0.4);
@@ -110,9 +110,16 @@
 
         .subtitle {
             color: #b8a9d6;
-            font-size: 18px;
+            font-size: 16px;
             max-width: 550px;
-            margin: 0 auto 38px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Geri Sayım Alanları */
+        .countdown-container {
+            margin-bottom: 35px;
             position: relative;
             z-index: 1;
         }
@@ -120,76 +127,71 @@
         .countdown-title {
             font-family: 'Orbitron', sans-serif;
             color: #ffbe0b;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 1;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
-        /* Geri Sayım Kutuları */
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 18px;
+            gap: 12px;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
         }
 
         .time-box {
             background: rgba(18, 6, 36, 0.85);
             border: 2px solid #ff007f;
-            border-radius: 14px;
-            width: 105px;
-            padding: 18px 10px;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35), inset 0 0 12px rgba(255, 0, 127, 0.2);
+            border-radius: 12px;
+            min-width: 85px;
+            padding: 14px 8px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.35), inset 0 0 10px rgba(255, 0, 127, 0.2);
         }
 
         .time-box span {
             display: block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 34px;
+            font-size: 26px;
             font-weight: 900;
             color: #00f3ff;
-            text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
         }
 
         .time-box small {
             display: block;
-            margin-top: 6px;
-            font-size: 12px;
-            letter-spacing: 2px;
+            margin-top: 4px;
+            font-size: 10px;
+            letter-spacing: 1px;
             color: #ff66b2;
             font-weight: 700;
         }
 
         /* Mağaza Bölümü */
         .shop-section {
-            padding: 60px 8% 110px;
-            max-width: 1200px;
+            padding: 40px 8% 90px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
             font-family: 'Orbitron', sans-serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             color: #00f3ff;
             text-shadow: 0 0 18px rgba(0, 243, 255, 0.6);
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             letter-spacing: 2px;
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .card {
-            background: rgba(17, 7, 34, 0.9);
+            background: rgba(17, 7, 34, 0.92);
             border: 1px solid rgba(0, 243, 255, 0.3);
             border-radius: 16px;
             padding: 30px 24px;
@@ -211,14 +213,14 @@
 
         .card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 12px;
             color: #ffffff;
         }
 
         .price {
             font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 900;
             color: #ffbe0b;
             margin-bottom: 18px;
@@ -228,8 +230,10 @@
             list-style: none;
             color: #cbbbe8;
             margin-bottom: 26px;
-            line-height: 1.9;
+            line-height: 2;
             font-size: 16px;
+            text-align: left;
+            padding-left: 15px;
         }
 
         .buy-btn {
@@ -266,7 +270,7 @@
     <header>
         <div class="logo">CYBERNORTH GAMES</div>
         <nav>
-            <a href="#release">ÇIKIŞ TARİHİ</a>
+            <a href="#release">SÜREÇLER</a>
             <a href="#shop">SHOP</a>
         </nav>
     </header>
@@ -275,62 +279,57 @@
         <div class="retro-sun"></div>
         <div class="badge">GRAND REAL CITY AUTO 2</div>
         <h1>ŞEHRİN KONTROLÜNÜ ELİNE AL</h1>
-        <p class="subtitle">Neon ışıkların altında kuralları yeniden yazmaya hazır ol. Büyük açılışa kalan süre:</p>
+        <p class="subtitle">Neon ışıkların altında kuralları yeniden yazmaya hazır ol.</p>
 
-        <div class="countdown-title">1 ARALIK BÜYÜK AÇILIŞA KALAN SÜRE</div>
+        <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 17:00) -->
+        <div class="countdown-container">
+            <div class="countdown-title"> İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE</div>
+            <div class="countdown" id="trailerCountdown">
+                <div class="time-box"><span id="t-hours">00</span><small>SAAT</small></div>
+                <div class="time-box"><span id="t-minutes">00</span><small>DAKİKA</small></div>
+                <div class="time-box"><span id="t-seconds">00</span><small>SANİYE</small></div>
+            </div>
+        </div>
 
-        <div class="countdown">
-            <div class="time-box">
-                <span id="days">00</span>
-                <small>GÜN</small>
-            </div>
-            <div class="time-box">
-                <span id="hours">00</span>
-                <small>SAAT</small>
-            </div>
-            <div class="time-box">
-                <span id="minutes">00</span>
-                <small>DAKİKA</small>
-            </div>
-            <div class="time-box">
-                <span id="seconds">00</span>
-                <small>SANİYE</small>
+        <!-- 2. Geri Sayım: Oyun Çıkış Tarihi (1 Ocak 00:00) -->
+        <div class="countdown-container">
+            <div class="countdown-title"> OYUNUN ÇIKIŞ TARİHİNE (1 OCAK) KALAN SÜRE</div>
+            <div class="countdown" id="releaseCountdown">
+                <div class="time-box"><span id="r-months">00</span><small>AY</small></div>
+                <div class="time-box"><span id="r-weeks">00</span><small>HAFTA</small></div>
+                <div class="time-box"><span id="r-days">00</span><small>GÜN</small></div>
+                <div class="time-box"><span id="r-hours">00</span><small>SAAT</small></div>
+                <div class="time-box"><span id="r-minutes">00</span><small>DAKİKA</small></div>
+                <div class="time-box"><span id="r-seconds">00</span><small>SANİYE</small></div>
             </div>
         </div>
     </section>
 
+    <!-- Mağaza Bölümü -->
     <section class="shop-section" id="shop">
         <h2 class="section-title">OFFICIAL GAME SHOP</h2>
         <div class="cards">
+            <!-- Normal Version -->
             <div class="card">
-                <h3>STARTER PACK</h3>
-                <div class="price">99 ROBUX</div>
+                <h3>NORMAL VERSION</h3>
+                <div class="price">1999 ROBUX</div>
                 <ul>
-                    <li>Başlangıç Nakit Desteği</li>
-                    <li>Özel Neon Plaka</li>
-                    <li>Discord Oyuncu Rolü</li>
+                    <li>✓ 1 Aralıkta Erken Satın Alma</li>
+                    <li>✓ 3 Adet Ücretsiz Kostüm</li>
+                    <li>✓ Erken Erişim Avantajı</li>
                 </ul>
                 <a href="#" class="buy-btn">SATIN AL</a>
             </div>
 
+            <!-- Deluxe Version -->
             <div class="card featured">
-                <h3>VICE KING VIP</h3>
-                <div class="price">299 ROBUX</div>
+                <h3>DELUXE VERSION</h3>
+                <div class="price">2999 ROBUX</div>
                 <ul>
-                    <li>Sınırsız VIP Araç Erişimi</li>
-                    <li>Özel Malikaneye Giriş</li>
-                    <li>2x Para Kazancı & VIP Tag</li>
-                </ul>
-                <a href="#" class="buy-btn">SATIN AL</a>
-            </div>
-
-            <div class="card">
-                <h3>CYBER BOSS</h3>
-                <div class="price">599 ROBUX</div>
-                <ul>
-                    <li>Tüm VIP Özellikleri</li>
-                    <li>Özel Süper Spor Koleksiyonu</li>
-                    <li>Erken Erişim & Kurucu Rozeti</li>
+                    <li>✓ 1 Aralıkta Erken Satın Alma</li>
+                    <li>✓ 5 Özel Araç</li>
+                    <li>✓ Özel Deniz Manzaralı Ev</li>
+                    <li>✓ VIP Kurucu Rozeti & Avantajlar</li>
                 </ul>
                 <a href="#" class="buy-btn">SATIN AL</a>
             </div>
@@ -395,6 +394,7 @@
     </a>
 
     <script>
+        // Müzik Aç/Kapat
         let isMusicPlaying = true;
         function toggleMusic() {
             const iframe = document.querySelector('iframe');
@@ -412,22 +412,47 @@
             }
         }
 
-        const targetDate = new Date("December 1, 2026 20:00:00").getTime();
+        // 1. Fragman Geri Sayımı (Bugün Saat 17:00)
+        const today = new Date();
+        const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 0, 0).getTime();
+
+        // 2. Çıkış Tarihi Geri Sayımı (1 Ocak 2027, 00:00:00)
+        const releaseDate = new Date("January 1, 2027 00:00:00").getTime();
 
         setInterval(() => {
             const now = new Date().getTime();
-            const diff = targetDate - now;
 
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            // Fragman Sayaç Mantığı
+            const trailerDiff = trailerDate - now;
+            if (trailerDiff > 0) {
+                const tHours = Math.floor(trailerDiff / (1000 * 60 * 60));
+                const tMinutes = Math.floor((trailerDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const tSeconds = Math.floor((trailerDiff % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerText = String(days).padStart(2, '0');
-                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+                document.getElementById("t-hours").innerText = String(tHours).padStart(2, '0');
+                document.getElementById("t-minutes").innerText = String(tMinutes).padStart(2, '0');
+                document.getElementById("t-seconds").innerText = String(tSeconds).padStart(2, '0');
+            } else {
+                document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'>FRAGMAN YAYINLANDI!</div>";
+            }
+
+            // Çıkış Tarihi Sayaç Mantığı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
+            const releaseDiff = releaseDate - now;
+            if (releaseDiff > 0) {
+                const totalSec = Math.floor(releaseDiff / 1000);
+                const months = Math.floor(totalSec / (30 * 24 * 60 * 60));
+                const weeks = Math.floor((totalSec % (30 * 24 * 60 * 60)) / (7 * 24 * 60 * 60));
+                const days = Math.floor((totalSec % (7 * 24 * 60 * 60)) / (24 * 60 * 60));
+                const hours = Math.floor((totalSec % (24 * 60 * 60)) / (60 * 60));
+                const minutes = Math.floor((totalSec % (60 * 60)) / 60);
+                const seconds = Math.floor(totalSec % 60);
+
+                document.getElementById("r-months").innerText = String(months).padStart(2, '0');
+                document.getElementById("r-weeks").innerText = String(weeks).padStart(2, '0');
+                document.getElementById("r-days").innerText = String(days).padStart(2, '0');
+                document.getElementById("r-hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("r-minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("r-seconds").innerText = String(seconds).padStart(2, '0');
             }
         }, 1000);
     </script>
