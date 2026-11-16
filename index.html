@@ -405,7 +405,7 @@
         <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 18:00 - Linkli Başlık) -->
         <div class="countdown-container">
             <div class="countdown-title">
-                <a href="https://www.youtube.com/watch?v=B4pyXhO2hb8" target="_blank"> FRAGMAN ŞUAN YAYINDA! 🔗</a>
+                <a href="https://www.youtube.com/watch?v=B4pyXhO2hb8" target="_blank">İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE (18:00) 🔗</a>
             </div>
             <div class="countdown" id="trailerCountdown">
                 <div class="time-box"><span id="t-minutes">00</span><small>DAKİKA</small></div>
@@ -413,7 +413,19 @@
             </div>
         </div>
 
-        <!-- 2. Geri Sayım: Oyun Çıkış Tarihi (1 Ocak 00:00) -->
+        <!-- 2. Geri Sayım: Detaylı Oyun Bakışı (23 Kasım) -->
+        <div class="countdown-container">
+            <div class="countdown-title" style="color: #00f3ff;">GRAND REAL CITY AUTO 2 DETAYLI OYUN BAKIŞI (23 KASIM)</div>
+            <div class="countdown" id="overviewCountdown">
+                <div class="time-box"><span id="ov-weeks">00</span><small>HAFTA</small></div>
+                <div class="time-box"><span id="ov-days">00</span><small>GÜN</small></div>
+                <div class="time-box"><span id="ov-hours">00</span><small>SAAT</small></div>
+                <div class="time-box"><span id="ov-minutes">00</span><small>DAKİKA</small></div>
+                <div class="time-box"><span id="ov-seconds">00</span><small>SANİYE</small></div>
+            </div>
+        </div>
+
+        <!-- 3. Geri Sayım: Oyun Çıkış Tarihi (1 Ocak 00:00) -->
         <div class="countdown-container">
             <div class="countdown-title">OYUNUN ÇIKIŞ TARİHİNE (1 OCAK) KALAN SÜRE</div>
             <div class="countdown" id="releaseCountdown">
@@ -596,9 +608,11 @@
         const today = new Date();
         // 1. Fragman (Bugün 18:00)
         const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0, 0).getTime();
-        // 2. Oyun Çıkışı (1 Ocak 2027)
+        // 2. Detaylı Oyun Bakışı (23 Kasım 2026, 00:00:00)
+        const overviewDate = new Date("November 23, 2026 00:00:00").getTime();
+        // 3. Oyun Çıkışı (1 Ocak 2027)
         const releaseDate = new Date("January 1, 2027 00:00:00").getTime();
-        // 3. Online Çıkışı (30 Haziran 2027)
+        // 4. Online Çıkışı (30 Haziran 2027)
         const onlineDate = new Date("June 30, 2027 00:00:00").getTime();
 
         setInterval(() => {
@@ -615,7 +629,24 @@
                 document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'><a href='https://www.youtube.com/watch?v=B4pyXhO2hb8' target='_blank' style='color:#00ff66; text-decoration:underline;'>FRAGMAN YAYINLANDI! İZLEMEK İÇİN TIKLA</a></div>";
             }
 
-            // 2. Oyun Çıkış Sayacı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
+            // 2. Detaylı Oyun Bakışı Sayacı (23 Kasım - Hafta, Gün, Saat, Dakika, Saniye)
+            const overviewDiff = overviewDate - now;
+            if (overviewDiff > 0) {
+                const ovTotalSec = Math.floor(overviewDiff / 1000);
+                const ovWeeks = Math.floor(ovTotalSec / (7 * 24 * 60 * 60));
+                const ovDays = Math.floor((ovTotalSec % (7 * 24 * 60 * 60)) / (24 * 60 * 60));
+                const ovHours = Math.floor((ovTotalSec % (24 * 60 * 60)) / (60 * 60));
+                const ovMinutes = Math.floor((ovTotalSec % (60 * 60)) / 60);
+                const ovSeconds = ovTotalSec % 60;
+
+                document.getElementById("ov-weeks").innerText = String(ovWeeks).padStart(2, '0');
+                document.getElementById("ov-days").innerText = String(ovDays).padStart(2, '0');
+                document.getElementById("ov-hours").innerText = String(ovHours).padStart(2, '0');
+                document.getElementById("ov-minutes").innerText = String(ovMinutes).padStart(2, '0');
+                document.getElementById("ov-seconds").innerText = String(ovSeconds).padStart(2, '0');
+            }
+
+            // 3. Oyun Çıkış Sayacı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
             const releaseDiff = releaseDate - now;
             if (releaseDiff > 0) {
                 const totalSec = Math.floor(releaseDiff / 1000);
@@ -627,7 +658,7 @@
                 document.getElementById("r-seconds").innerText = String(totalSec % 60).padStart(2, '0');
             }
 
-            // 3. Online Modu Çıkış Sayacı (30 Haziran - Ay, Gün, Saat, Dakika, Saniye)
+            // 4. Online Modu Çıkış Sayacı (30 Haziran - Ay, Gün, Saat, Dakika, Saniye)
             const onlineDiff = onlineDate - now;
             if (onlineDiff > 0) {
                 const oTotalSec = Math.floor(onlineDiff / 1000);
