@@ -392,11 +392,10 @@
         <h1>ŞEHRİN KONTROLÜNÜ ELİNE AL</h1>
         <p class="subtitle">Neon ışıkların altında kuralları yeniden yazmaya hazır ol.</p>
 
-        <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 17:00) -->
+        <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 17:30 - Dakika ve Saniye) -->
         <div class="countdown-container">
-            <div class="countdown-title">İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE</div>
+            <div class="countdown-title">İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE (17:30)</div>
             <div class="countdown" id="trailerCountdown">
-                <div class="time-box"><span id="t-hours">00</span><small>SAAT</small></div>
                 <div class="time-box"><span id="t-minutes">00</span><small>DAKİKA</small></div>
                 <div class="time-box"><span id="t-seconds">00</span><small>SANİYE</small></div>
             </div>
@@ -583,8 +582,8 @@
         }
 
         const today = new Date();
-        // 1. Fragman (Bugün 17:00)
-        const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 0, 0).getTime();
+        // 1. Fragman (Bugün 17:30)
+        const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 30, 0).getTime();
         // 2. Oyun Çıkışı (1 Ocak 2027)
         const releaseDate = new Date("January 1, 2027 00:00:00").getTime();
         // 3. Online Çıkışı (30 Haziran 2027)
@@ -593,12 +592,15 @@
         setInterval(() => {
             const now = new Date().getTime();
 
-            // 1. Fragman Sayacı
+            // 1. Fragman Sayacı (Sadece Dakika ve Saniye)
             const trailerDiff = trailerDate - now;
             if (trailerDiff > 0) {
-                document.getElementById("t-hours").innerText = String(Math.floor(trailerDiff / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById("t-minutes").innerText = String(Math.floor((trailerDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById("t-seconds").innerText = String(Math.floor((trailerDiff % (1000 * 60)) / 1000)).padStart(2, '0');
+                const totalMinutes = Math.floor(trailerDiff / (1000 * 60));
+                const seconds = Math.floor((trailerDiff % (1000 * 60)) / 1000);
+                document.getElementById("t-minutes").innerText = String(totalMinutes).padStart(2, '0');
+                document.getElementById("t-seconds").innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'>FRAGMAN YAYINLANDI!</div>";
             }
 
             // 2. Oyun Çıkış Sayacı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
