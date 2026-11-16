@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberNorth Games | Grand Real City Auto 2</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1f0836 0%, #090312 65%, #040108 100%);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Üst Menü */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: rgba(9, 3, 18, 0.9);
+            border-bottom: 1px solid rgba(255, 0, 127, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00f3ff, #ff007f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: #d0c4e8;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00f3ff;
+            text-shadow: 0 0 10px #00f3ff;
+        }
+
+        /* Ana Hero Alanı */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        .retro-sun {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #ffbe0b 0%, #ff007f 60%, #8338ec 100%);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.22;
+            filter: blur(3px);
+            z-index: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(28px, 4.5vw, 50px);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 25px rgba(255, 0, 127, 0.8), 0 0 45px rgba(255, 0, 127, 0.4);
+        }
+
+        .subtitle {
+            color: #b8a9d6;
+            font-size: 16px;
+            max-width: 550px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Geri Sayım Alanları */
+        .countdown-container {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffbe0b;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(18, 6, 36, 0.85);
+            border: 2px solid #ff007f;
+            border-radius: 10px;
+            min-width: 75px;
+            padding: 12px 6px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.35);
+        }
+
+        .time-box span {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #00f3ff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+        }
+
+        .time-box small {
+            display: block;
+            margin-top: 3px;
+            font-size: 9px;
+            letter-spacing: 1px;
+            color: #ff66b2;
+            font-weight: 700;
+        }
+
+        /* Genel Bölüm Stilleri */
+        .section-container {
+            padding: 50px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #00f3ff;
+            text-shadow: 0 0 18px rgba(0, 243, 255, 0.6);
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+        }
+
+        /* Karakterler Vitrini */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .char-card {
+            background: rgba(17, 7, 34, 0.9);
+            border: 1px solid rgba(255, 0, 127, 0.4);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.2);
+        }
+
+        .char-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            color: #ffbe0b;
+            margin-bottom: 10px;
+        }
+
+        .char-card p {
+            color: #cbbbe8;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Oyun Özellikleri */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature-box {
+            background: rgba(15, 5, 30, 0.8);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .feature-box h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: #00f3ff;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            color: #b8a9d6;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Sistem Gereksinimleri */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .spec-card {
+            background: rgba(12, 4, 24, 0.9);
+            border: 1px solid rgba(255, 190, 11, 0.4);
+            border-radius: 14px;
+            padding: 25px;
+        }
+
+        .spec-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: #ffbe0b;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 190, 11, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .spec-card ul {
+            list-style: none;
+            color: #d0c4e8;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        /* Mağaza Bölümü */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(17, 7, 34, 0.92);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+        }
+
+        .card.featured {
+            border: 2px solid #ffbe0b;
+            box-shadow: 0 0 25px rgba(255, 190, 11, 0.25);
+        }
+
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 30px;
+            font-weight: 900;
+            color: #ffbe0b;
+            margin-bottom: 18px;
+        }
+
+        .card ul {
+            list-style: none;
+            color: #cbbbe8;
+            margin-bottom: 26px;
+            line-height: 2;
+            font-size: 16px;
+            text-align: left;
+            padding-left: 15px;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ff007f, #8338ec);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #7c6b9e;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CYBERNORTH GAMES</div>
+        <nav>
+            <a href="#characters">KARAKTERLER</a>
+            <a href="#features">ÖZELLİKLER</a>
+            <a href="#specs">SİSTEM</a>
+            <a href="#shop">SHOP</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="release">
+        <div class="retro-sun"></div>
+        <div class="badge">GRAND REAL CITY AUTO 2</div>
+        <h1>ŞEHRİN KONTROLÜNÜ ELİNE AL</h1>
+        <p class="subtitle">Neon ışıkların altında kuralları yeniden yazmaya hazır ol.</p>
+
+        <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 17:00) -->
+        <div class="countdown-container">
+            <div class="countdown-title"> İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE</div>
+            <div class="countdown" id="trailerCountdown">
+                <div class="time-box"><span id="t-hours">00</span><small>SAAT</small></div>
+                <div class="time-box"><span id="t-minutes">00</span><small>DAKİKA</small></div>
+                <div class="time-box"><span id="t-seconds">00</span><small>SANİYE</small></div>
+            </div>
+        </div>
+
+        <!-- 2. Geri Sayım: Oyun Çıkış Tarihi (1 Ocak 00:00) -->
+        <div class="countdown-container">
+            <div class="countdown-title"> OYUNUN ÇIKIŞ TARİHİNE (1 OCAK) KALAN SÜRE</div>
+            <div class="countdown" id="releaseCountdown">
+                <div class="time-box"><span id="r-months">00</span><small>AY</small></div>
+                <div class="time-box"><span id="r-weeks">00</span><small>HAFTA</small></div>
+                <div class="time-box"><span id="r-days">00</span><small>GÜN</small></div>
+                <div class="time-box"><span id="r-hours">00</span><small>SAAT</small></div>
+                <div class="time-box"><span id="r-minutes">00</span><small>DAKİKA</small></div>
+                <div class="time-box"><span id="r-seconds">00</span><small>SANİYE</small></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Karakterler Vitrini -->
+    <section class="section-container" id="characters">
+        <h2 class="section-title">KARAKTERLER</h2>
+        <div class="characters-grid">
+            <div class="char-card">
+                <h3>TREVOR</h3>
+                <p>Sokakların sert ve tecrübeli ismi. Kuralları kendi koyar, tehlikeden kaçmaz.</p>
+            </div>
+            <div class="char-card">
+                <h3>LUCIA</h3>
+                <p>Zekası ve planlarıyla şehrin altını üstüne getiren cesur lider.</p>
+            </div>
+            <div class="char-card">
+                <h3>ALEX</h3>
+                <p>Şehrin gizli operasyonlarındaki en güvenilir ve hızlı kontak noktası.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oyun Özellikleri -->
+    <section class="section-container" id="features">
+        <h2 class="section-title">OYUN ÖZELLİKLERİ</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h4>🌴 Devasa Açık Dünya</h4>
+                <p>Neon sokaklar, sahiller ve keşfedilmeyi bekleyen gizli bölgeler seni bekliyor.</p>
+            </div>
+            <div class="feature-box">
+                <h4>🚗 Gelişmiş Araç Fiziği</h4>
+                <p>Özel modifiye seçenekleriyle süper spor arabaların ve motorların sınırlarını zorla.</p>
+            </div>
+            <div class="feature-box">
+                <h4>🎵 Özel Radyo Kanalları</h4>
+                <p>Oynarken ruhunuza işleyecek synthwave ve retro müzik istasyonları.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistem Gereksinimleri -->
+    <section class="section-container" id="specs">
+        <h2 class="section-title">SİSTEM GEREKSİNİMLERİ</h2>
+        <div class="specs-grid">
+            <div class="spec-card">
+                <h3>MİNİMAL GEREKSİNİMLER</h3>
+                <ul>
+                    <li><strong>İşletim Sistemi:</strong> Windows 10 / Mobil Sürüm 11+</li>
+                    <li><strong>İşlemci:</strong> Intel Core i3 / Dengi</li>
+                    <li><strong>RAM:</strong> 4 GB RAM</li>
+                    <li><strong>Depolama:</strong> 10 GB Boş Alan</li>
+                </ul>
+            </div>
+            <div class="spec-card">
+                <h3>ÖNERİLEN SİSTEM</h3>
+                <ul>
+                    <li><strong>İşletim Sistemi:</strong> Windows 11</li>
+                    <li><strong>İşlemci:</strong> Intel Core i5 / Ryzen 5</li>
+                    <li><strong>RAM:</strong> 8 GB RAM</li>
+                    <li><strong>Depolama:</strong> 15 GB SSD Alanı</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mağaza Bölümü -->
+    <section class="section-container" id="shop">
+        <h2 class="section-title">OFFICIAL GAME SHOP</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>NORMAL VERSION</h3>
+                <div class="price">1999 ROBUX</div>
+                <ul>
+                    <li>✓ 1 Aralıkta Erken Satın Alma</li>
+                    <li>✓ 3 Adet Ücretsiz Kostüm</li>
+                    <li>✓ Erken Erişim Avantajı</li>
+                </ul>
+                <a href="#" class="buy-btn">SATIN AL</a>
+            </div>
+
+            <div class="card featured">
+                <h3>DELUXE VERSION</h3>
+                <div class="price">2999 ROBUX</div>
+                <ul>
+                    <li>✓ 1 Aralıkta Erken Satın Alma</li>
+                    <li>✓ 5 Özel Araç</li>
+                    <li>✓ Özel Deniz Manzaralı Ev</li>
+                    <li>✓ VIP Kurucu Rozeti & Avantajlar</li>
+                </ul>
+                <a href="#" class="buy-btn">SATIN AL</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 CyberNorth Games. Tüm hakları saklıdır.
+    </footer>
+
+    <!-- Müzik Oynatıcı (GTA 6 Theme) -->
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/K7f_7eXBdOI?autoplay=1&loop=1&playlist=K7f_7eXBdOI" title="GTA 6 Theme" frameborder="0" allow="autoplay"></iframe>
+
+    <!-- Sol Alt: Müzik Butonu -->
+    <button onclick="toggleMusic()" id="musicBtn" style="
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        background: linear-gradient(45deg, #00f3ff, #8338ec);
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 50px;
+        font-family: sans-serif;
+        font-weight: 900;
+        font-size: 13px;
+        z-index: 9999;
+        cursor: pointer;
+        border: 2px solid #ffffff;
+    ">🎵 MÜZİK: AÇIK</button>
+
+    <!-- Sağ Alt: Destek Butonu -->
+    <a href="https://discord.gg/DISCORD_DAVET_LINKIN" target="_blank" style="
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: linear-gradient(45deg, #ff007f, #00f3ff);
+        color: #ffffff;
+        padding: 14px 24px;
+        border-radius: 50px;
+        font-family: sans-serif;
+        font-weight: 900;
+        font-size: 14px;
+        z-index: 9999;
+        text-decoration: none;
+        border: 2px solid #ffffff;
+    ">7/24 CANLI DESTEK</a>
+
+    <script>
+        let isMusicPlaying = true;
+        function toggleMusic() {
+            const iframe = document.querySelector('iframe');
+            const btn = document.getElementById('musicBtn');
+            if (isMusicPlaying) {
+                iframe.src = "";
+                btn.innerHTML = "🔇 MÜZİK: KAPALI";
+                btn.style.background = "#333";
+                isMusicPlaying = false;
+            } else {
+                iframe.src = "https://www.youtube.com/embed/K7f_7eXBdOI?autoplay=1&loop=1&playlist=K7f_7eXBdOI";
+                btn.innerHTML = "🎵 MÜZİK: AÇIK";
+                btn.style.background = "linear-gradient(45deg, #00f3ff, #8338ec)";
+                isMusicPlaying = true;
+            }
+        }
+
+        const today = new Date();
+        const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 0, 0).getTime();
+        const releaseDate = new Date("January 1, 2027 00:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const trailerDiff = trailerDate - now;
+            if (trailerDiff > 0) {
+                document.getElementById("t-hours").innerText = String(Math.floor(trailerDiff / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById("t-minutes").innerText = String(Math.floor((trailerDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById("t-seconds").innerText = String(Math.floor((trailerDiff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+
+            const releaseDiff = releaseDate - now;
+            if (releaseDiff > 0) {
+                const totalSec = Math.floor(releaseDiff / 1000);
+                document.getElementById("r-months").innerText = String(Math.floor(totalSec / (30 * 24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("r-weeks").innerText = String(Math.floor((totalSec % (30 * 24 * 60 * 60)) / (7 * 24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("r-days").innerText = String(Math.floor((totalSec % (7 * 24 * 60 * 60)) / (24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("r-hours").innerText = String(Math.floor((totalSec % (24 * 60 * 60)) / (60 * 60))).padStart(2, '0');
+                document.getElementById("r-minutes").innerText = String(Math.floor((totalSec % (60 * 60)) / 60)).padStart(2, '0');
+                document.getElementById("r-seconds").innerText = String(totalSec % 60).padStart(2, '0');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
