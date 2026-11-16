@@ -125,10 +125,20 @@
 
         .countdown-title {
             font-family: 'Orbitron', sans-serif;
-            color: #ffbe0b;
             font-size: 13px;
             letter-spacing: 2px;
             margin-bottom: 10px;
+        }
+
+        .countdown-title a {
+            color: #ffbe0b;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .countdown-title a:hover {
+            color: #00f3ff;
+            text-shadow: 0 0 10px #00f3ff;
         }
 
         .countdown {
@@ -392,9 +402,11 @@
         <h1>ŞEHRİN KONTROLÜNÜ ELİNE AL</h1>
         <p class="subtitle">Neon ışıkların altında kuralları yeniden yazmaya hazır ol.</p>
 
-        <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 18:00 - Dakika ve Saniye) -->
+        <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 18:00 - Linkli Başlık) -->
         <div class="countdown-container">
-            <div class="countdown-title">İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE (18:00)</div>
+            <div class="countdown-title">
+                <a href="https://www.youtube.com/watch?v=B4pyXhO2hb8" target="_blank"> FRAGMAN ŞUAN YAYINDA! 🔗</a>
+            </div>
             <div class="countdown" id="trailerCountdown">
                 <div class="time-box"><span id="t-minutes">00</span><small>DAKİKA</small></div>
                 <div class="time-box"><span id="t-seconds">00</span><small>SANİYE</small></div>
@@ -600,7 +612,7 @@
                 document.getElementById("t-minutes").innerText = String(totalMinutes).padStart(2, '0');
                 document.getElementById("t-seconds").innerText = String(seconds).padStart(2, '0');
             } else {
-                document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'>FRAGMAN YAYINLANDI!</div>";
+                document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'><a href='https://www.youtube.com/watch?v=B4pyXhO2hb8' target='_blank' style='color:#00ff66; text-decoration:underline;'>FRAGMAN YAYINLANDI! İZLEMEK İÇİN TIKLA</a></div>";
             }
 
             // 2. Oyun Çıkış Sayacı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
