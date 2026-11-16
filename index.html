@@ -48,9 +48,9 @@
         nav a {
             color: #d0c4e8;
             text-decoration: none;
-            margin-left: 24px;
+            margin-left: 22px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             letter-spacing: 1px;
             transition: 0.3s;
         }
@@ -142,7 +142,7 @@
             background: rgba(18, 6, 36, 0.85);
             border: 2px solid #ff007f;
             border-radius: 10px;
-            min-width: 75px;
+            min-width: 78px;
             padding: 12px 6px;
             box-shadow: 0 0 15px rgba(255, 0, 127, 0.35);
         }
@@ -337,6 +337,33 @@
             box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
         }
 
+        /* Online Modu Özel Alt Bölüm */
+        .online-section {
+            text-align: center;
+            padding: 60px 8% 110px;
+            background: linear-gradient(180deg, transparent, rgba(0, 243, 255, 0.06));
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            margin-top: 40px;
+        }
+
+        .online-badge {
+            display: inline-block;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 5px 16px;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+        }
+
+        .online-box {
+            border-color: #00f3ff !important;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.35) !important;
+        }
+
         footer {
             text-align: center;
             padding: 25px;
@@ -355,6 +382,7 @@
             <a href="#features">ÖZELLİKLER</a>
             <a href="#specs">SİSTEM</a>
             <a href="#shop">SHOP</a>
+            <a href="#online">ONLINE</a>
         </nav>
     </header>
 
@@ -366,7 +394,7 @@
 
         <!-- 1. Geri Sayım: İlk Fragman (Bugün Saat 17:00) -->
         <div class="countdown-container">
-            <div class="countdown-title"> İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE</div>
+            <div class="countdown-title">İLK FRAGMANIN YAYINLANMASINA KALAN SÜRE</div>
             <div class="countdown" id="trailerCountdown">
                 <div class="time-box"><span id="t-hours">00</span><small>SAAT</small></div>
                 <div class="time-box"><span id="t-minutes">00</span><small>DAKİKA</small></div>
@@ -376,7 +404,7 @@
 
         <!-- 2. Geri Sayım: Oyun Çıkış Tarihi (1 Ocak 00:00) -->
         <div class="countdown-container">
-            <div class="countdown-title"> OYUNUN ÇIKIŞ TARİHİNE (1 OCAK) KALAN SÜRE</div>
+            <div class="countdown-title">OYUNUN ÇIKIŞ TARİHİNE (1 OCAK) KALAN SÜRE</div>
             <div class="countdown" id="releaseCountdown">
                 <div class="time-box"><span id="r-months">00</span><small>AY</small></div>
                 <div class="time-box"><span id="r-weeks">00</span><small>HAFTA</small></div>
@@ -480,6 +508,21 @@
         </div>
     </section>
 
+    <!-- En Alt: ONLINE MODU ÇIKIŞ SAYACI (30 HAZİRAN) -->
+    <section class="online-section" id="online">
+        <div class="online-badge">MULTIPLAYER EXPANSION</div>
+        <h2 class="section-title" style="margin-bottom: 12px;">GRAND REAL CITY ONLINE</h2>
+        <p style="color: #b8a9d6; margin-bottom: 28px; font-size: 16px;">Arkadaşlarınla şehre hükmetmeye hazırlan. Çok oyunculu modun açılışına kalan süre (30 Haziran):</p>
+        
+        <div class="countdown" id="onlineCountdown">
+            <div class="time-box online-box"><span id="o-months">00</span><small>AY</small></div>
+            <div class="time-box online-box"><span id="o-days">00</span><small>GÜN</small></div>
+            <div class="time-box online-box"><span id="o-hours">00</span><small>SAAT</small></div>
+            <div class="time-box online-box"><span id="o-minutes">00</span><small>DAKİKA</small></div>
+            <div class="time-box online-box"><span id="o-seconds">00</span><small>SANİYE</small></div>
+        </div>
+    </section>
+
     <footer>
         &copy; 2026 CyberNorth Games. Tüm hakları saklıdır.
     </footer>
@@ -540,11 +583,17 @@
         }
 
         const today = new Date();
+        // 1. Fragman (Bugün 17:00)
         const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 0, 0).getTime();
+        // 2. Oyun Çıkışı (1 Ocak 2027)
         const releaseDate = new Date("January 1, 2027 00:00:00").getTime();
+        // 3. Online Çıkışı (30 Haziran 2027)
+        const onlineDate = new Date("June 30, 2027 00:00:00").getTime();
 
         setInterval(() => {
             const now = new Date().getTime();
+
+            // 1. Fragman Sayacı
             const trailerDiff = trailerDate - now;
             if (trailerDiff > 0) {
                 document.getElementById("t-hours").innerText = String(Math.floor(trailerDiff / (1000 * 60 * 60))).padStart(2, '0');
@@ -552,6 +601,7 @@
                 document.getElementById("t-seconds").innerText = String(Math.floor((trailerDiff % (1000 * 60)) / 1000)).padStart(2, '0');
             }
 
+            // 2. Oyun Çıkış Sayacı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
             const releaseDiff = releaseDate - now;
             if (releaseDiff > 0) {
                 const totalSec = Math.floor(releaseDiff / 1000);
@@ -561,6 +611,23 @@
                 document.getElementById("r-hours").innerText = String(Math.floor((totalSec % (24 * 60 * 60)) / (60 * 60))).padStart(2, '0');
                 document.getElementById("r-minutes").innerText = String(Math.floor((totalSec % (60 * 60)) / 60)).padStart(2, '0');
                 document.getElementById("r-seconds").innerText = String(totalSec % 60).padStart(2, '0');
+            }
+
+            // 3. Online Modu Çıkış Sayacı (30 Haziran - Ay, Gün, Saat, Dakika, Saniye)
+            const onlineDiff = onlineDate - now;
+            if (onlineDiff > 0) {
+                const oTotalSec = Math.floor(onlineDiff / 1000);
+                const oMonths = Math.floor(oTotalSec / (30 * 24 * 60 * 60));
+                const oDays = Math.floor((oTotalSec % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
+                const oHours = Math.floor((oTotalSec % (24 * 60 * 60)) / (60 * 60));
+                const oMinutes = Math.floor((oTotalSec % (60 * 60)) / 60);
+                const oSeconds = oTotalSec % 60;
+
+                document.getElementById("o-months").innerText = String(oMonths).padStart(2, '0');
+                document.getElementById("o-days").innerText = String(oDays).padStart(2, '0');
+                document.getElementById("o-hours").innerText = String(oHours).padStart(2, '0');
+                document.getElementById("o-minutes").innerText = String(oMinutes).padStart(2, '0');
+                document.getElementById("o-seconds").innerText = String(oSeconds).padStart(2, '0');
             }
         }, 1000);
     </script>
