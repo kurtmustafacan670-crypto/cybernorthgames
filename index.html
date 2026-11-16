@@ -3,17 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberNorth Games | GRAND REAL CITY AUTO 2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>CyberNorth Games | Grand Real City Auto 2</title>
     <style>
-        :root {
-            --neon-pink: #ff007f;
-            --neon-cyan: #00f3ff;
-            --neon-purple: #9d00ff;
-            --neon-yellow: #ffe600;
-            --bg-dark: #090314;
-            --card-bg: rgba(20, 8, 42, 0.78);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;700&display=swap');
 
         * {
             margin: 0;
@@ -22,67 +14,11 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background: radial-gradient(circle at top, #1f0836 0%, #090312 65%, #040108 100%);
             color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Vice City Retro Gün Batımı & Grid Arka Plan */
-        .vice-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: radial-gradient(circle at 50% 25%, #2b0947 0%, #120424 55%, #070210 100%);
-        }
-
-        .retro-sun {
-            position: fixed;
-            top: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 340px;
-            height: 340px;
-            border-radius: 50%;
-            background: linear-gradient(180deg, #ffe600 0%, #ff5e00 45%, #ff007f 100%);
-            box-shadow: 0 0 80px rgba(255, 0, 127, 0.55);
-            z-index: -1;
-            opacity: 0.35;
-            -webkit-mask-image: linear-gradient(to bottom, 
-                black 0%, black 55%, 
-                transparent 55%, transparent 58%, 
-                black 58%, black 68%, 
-                transparent 68%, transparent 72%, 
-                black 72%, black 82%, 
-                transparent 82%, transparent 87%, 
-                black 87%, black 100%);
-        }
-
-        .cyber-grid {
-            position: fixed;
-            bottom: 0;
-            left: -50%;
-            width: 200%;
-            height: 45vh;
-            background-image: 
-                linear-gradient(to right, rgba(0, 243, 255, 0.25) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 0, 127, 0.25) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(65deg);
-            transform-origin: bottom;
-            z-index: -1;
-            animation: gridMove 8s linear infinite;
-            opacity: 0.45;
-        }
-
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 50px; }
         }
 
         /* Üst Menü */
@@ -91,486 +27,410 @@
             justify-content: space-between;
             align-items: center;
             padding: 22px 8%;
-            border-bottom: 1px solid rgba(255, 0, 127, 0.3);
-            background: rgba(9, 3, 20, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(9, 3, 18, 0.8);
+            border-bottom: 1px solid rgba(255, 0, 127, 0.25);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(8px);
         }
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 20px;
             font-weight: 900;
             letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            background: linear-gradient(90deg, #00f3ff, #ff007f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
         }
 
         nav a {
-            color: #e2e8f0;
+            color: #d0c4e8;
             text-decoration: none;
             margin-left: 28px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 15px;
             letter-spacing: 1px;
+            transition: 0.3s;
         }
 
         nav a:hover {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
+            color: #00f3ff;
+            text-shadow: 0 0 10px #00f3ff;
         }
 
-        /* Ana Bölüm ve Zamanlayıcı */
+        /* Ana Hero Alanı */
         .hero {
             text-align: center;
             padding: 70px 20px 50px;
-            max-width: 1100px;
-            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Retro Güneş Efekti */
+        .retro-sun {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #ffbe0b 0%, #ff007f 60%, #8338ec 100%);
+            position: absolute;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.22;
+            filter: blur(2px);
+            z-index: 0;
         }
 
         .badge {
             display: inline-block;
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
             padding: 6px 18px;
-            border: 1px solid var(--neon-cyan);
             border-radius: 50px;
-            color: var(--neon-cyan);
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
+            font-size: 12px;
             letter-spacing: 2px;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
             box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
-            background: rgba(0, 243, 255, 0.08);
         }
 
-        .hero h1 {
+        h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            font-size: clamp(32px, 5vw, 56px);
             font-weight: 900;
             line-height: 1.15;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 0 10px var(--neon-pink), 0 0 25px var(--neon-pink), 0 0 45px var(--neon-purple);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 25px rgba(255, 0, 127, 0.8), 0 0 45px rgba(255, 0, 127, 0.4);
         }
 
-        .hero p {
-            color: #cbd5e1;
-            font-size: 1.1rem;
-            max-width: 650px;
-            margin: 0 auto 40px;
+        .subtitle {
+            color: #b8a9d6;
+            font-size: 18px;
+            max-width: 550px;
+            margin: 0 auto 38px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffbe0b;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Geri Sayım Kutuları */
-        .countdown-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            color: var(--neon-yellow);
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 230, 0, 0.6);
-        }
-
-        .countdown-container {
+        .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 18px;
             flex-wrap: wrap;
-            margin-bottom: 45px;
+            position: relative;
+            z-index: 1;
         }
 
         .time-box {
-            background: var(--card-bg);
-            border: 2px solid var(--neon-pink);
-            border-radius: 16px;
-            padding: 20px 25px;
-            min-width: 130px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 0 25px rgba(255, 0, 127, 0.35), inset 0 0 15px rgba(255, 0, 127, 0.15);
-            transition: transform 0.3s ease;
+            background: rgba(18, 6, 36, 0.85);
+            border: 2px solid #ff007f;
+            border-radius: 14px;
+            width: 105px;
+            padding: 18px 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.35), inset 0 0 12px rgba(255, 0, 127, 0.2);
         }
 
-        .time-box:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
-        }
-
-        .time-number {
+        .time-box span {
             display: block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
+            font-size: 34px;
             font-weight: 900;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+            color: #00f3ff;
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
         }
 
-        .time-label {
+        .time-box small {
             display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
+            margin-top: 6px;
+            font-size: 12px;
             letter-spacing: 2px;
-            color: #ffffff;
-            margin-top: 5px;
-            text-transform: uppercase;
+            color: #ff66b2;
+            font-weight: 700;
         }
 
-        /* Shop (Mağaza) Bölümü */
+        /* Mağaza Bölümü */
         .shop-section {
-            padding: 60px 8% 90px;
-            max-width: 1150px;
+            padding: 60px 8% 110px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-heading {
+        .section-title {
             text-align: center;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.3rem;
+            font-size: 32px;
             font-weight: 900;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #ffffff, var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #00f3ff;
+            text-shadow: 0 0 18px rgba(0, 243, 255, 0.6);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
         }
 
-        .section-sub {
-            text-align: center;
-            color: #94a3b8;
-            margin-bottom: 50px;
-        }
-
-        .shop-grid {
+        .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-            gap: 35px;
-            align-items: stretch;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
         }
 
-        .product-card {
-            background: var(--card-bg);
-            border: 2px solid rgba(0, 243, 255, 0.4);
-            border-radius: 22px;
-            padding: 35px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(14px);
+        .card {
+            background: rgba(17, 7, 34, 0.9);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: 0.3s;
             position: relative;
-            transition: 0.35s ease;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.35);
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #ff007f;
+            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.35);
         }
 
-        /* Deluxe Kart Vurgusu */
-        .product-card.deluxe {
-            border: 2px solid var(--neon-pink);
-            box-shadow: 0 0 30px rgba(255, 0, 127, 0.3);
+        .card.featured {
+            border: 2px solid #ffbe0b;
+            box-shadow: 0 0 25px rgba(255, 190, 11, 0.25);
         }
 
-        .product-card.deluxe:hover {
-            box-shadow: 0 0 45px rgba(255, 0, 127, 0.6);
-        }
-
-        .popular-tag {
-            position: absolute;
-            top: -14px;
-            right: 25px;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
-            color: #fff;
+        .card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 5px 15px;
-            border-radius: 20px;
-            letter-spacing: 1.5px;
-            box-shadow: 0 0 15px var(--neon-pink);
-        }
-
-        .edition-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            color: #fff;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #ffffff;
         }
 
         .price {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
+            font-size: 28px;
             font-weight: 900;
-            color: var(--neon-cyan);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            color: #ffbe0b;
+            margin-bottom: 18px;
         }
 
-        .product-card.deluxe .price {
-            color: var(--neon-pink);
-            text-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
-        }
-
-        .features {
+        .card ul {
             list-style: none;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .features li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: #e2e8f0;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .features li::before {
-            content: "✦";
-            color: var(--neon-cyan);
-            font-weight: bold;
-        }
-
-        .product-card.deluxe .features li::before {
-            color: var(--neon-pink);
+            color: #cbbbe8;
+            margin-bottom: 26px;
+            line-height: 1.9;
+            font-size: 16px;
         }
 
         .buy-btn {
+            display: inline-block;
             width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
+            padding: 13px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ff007f, #8338ec);
+            color: #ffffff;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: 1px;
             transition: 0.3s;
-            background: linear-gradient(90deg, #00c6ff, var(--neon-cyan));
-            color: #090314;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
         }
 
         .buy-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
-        }
-
-        .product-card.deluxe .buy-btn {
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
-            color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
-        }
-
-        .product-card.deluxe .buy-btn:hover {
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.9);
-        }
-
-        /* Satın Alma Bildirim Penceresi (Modal) */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 2, 15, 0.85);
-            backdrop-filter: blur(8px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            padding: 20px;
-        }
-
-        .modal-box {
-            background: #14082a;
-            border: 2px solid var(--neon-cyan);
-            border-radius: 20px;
-            padding: 35px;
-            max-width: 440px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.4);
-        }
-
-        .modal-box h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-cyan);
-            margin-bottom: 12px;
-            font-size: 1.4rem;
-        }
-
-        .modal-box p {
-            color: #cbd5e1;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .close-modal {
-            padding: 10px 28px;
-            background: var(--neon-pink);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
+            filter: brightness(1.15);
         }
 
         footer {
             text-align: center;
             padding: 25px;
-            border-top: 1px solid rgba(255, 0, 127, 0.25);
-            color: #94a3b8;
-            font-size: 0.9rem;
-            background: rgba(9, 3, 20, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #7c6b9e;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <div class="vice-bg"></div>
-    <div class="retro-sun"></div>
-    <div class="cyber-grid"></div>
-
     <header>
         <div class="logo">CYBERNORTH GAMES</div>
         <nav>
-            <a href="#countdown">Çıkış Tarihi</a>
-            <a href="#shop">Shop</a>
+            <a href="#release">ÇIKIŞ TARİHİ</a>
+            <a href="#shop">SHOP</a>
         </nav>
     </header>
 
-    <section class="hero" id="countdown">
+    <section class="hero" id="release">
+        <div class="retro-sun"></div>
         <div class="badge">GRAND REAL CITY AUTO 2</div>
         <h1>ŞEHRİN KONTROLÜNÜ ELİNE AL</h1>
-        <p>Neon ışıkların altında kuralları yeniden yazmaya hazır ol. Büyük açılışa kalan süre:</p>
+        <p class="subtitle">Neon ışıkların altında kuralları yeniden yazmaya hazır ol. Büyük açılışa kalan süre:</p>
 
         <div class="countdown-title">1 ARALIK BÜYÜK AÇILIŞA KALAN SÜRE</div>
 
-        <div class="countdown-container">
+        <div class="countdown">
             <div class="time-box">
-                <span class="time-number" id="weeks">00</span>
-                <span class="time-label">HAFTA</span>
+                <span id="days">00</span>
+                <small>GÜN</small>
             </div>
             <div class="time-box">
-                <span class="time-number" id="days">00</span>
-                <span class="time-label">GÜN</span>
+                <span id="hours">00</span>
+                <small>SAAT</small>
             </div>
             <div class="time-box">
-                <span class="time-number" id="hours">00</span>
-                <span class="time-label">SAAT</span>
+                <span id="minutes">00</span>
+                <small>DAKİKA</small>
             </div>
             <div class="time-box">
-                <span class="time-number" id="seconds">00</span>
-                <span class="time-label">SANİYE</span>
+                <span id="seconds">00</span>
+                <small>SANİYE</small>
             </div>
         </div>
     </section>
 
     <section class="shop-section" id="shop">
-        <h2 class="section-heading">OFFICIAL GAME SHOP</h2>
-        <p class="section-sub">Oyun içi özel içerikler ve erken erişim paketleri</p>
-
-        <div class="shop-grid">
-            <!-- NORMAL VERSION -->
-            <div class="product-card">
-                <div>
-                    <div class="edition-name">NORMAL VERSION</div>
-                    <div class="price">1999R</div>
-                    <ul class="features">
-                        <li>Tam Oyun Erişimi (Grand Real City Auto 2)</li>
-                        <li>Standart Başlangıç Garajı ve Aracı</li>
-                        <li>Çevrimiçi Çok Oyunculu Mod Erişimi</li>
-                        <li>1 Aralık Açılış Günü Erişimi</li>
-                    </ul>
-                </div>
-                <button class="buy-btn" onclick="openShopModal('NORMAL VERSION', '1999R')">SATIN AL - 1999R</button>
+        <h2 class="section-title">OFFICIAL GAME SHOP</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>STARTER PACK</h3>
+                <div class="price">99 ROBUX</div>
+                <ul>
+                    <li>Başlangıç Nakit Desteği</li>
+                    <li>Özel Neon Plaka</li>
+                    <li>Discord Oyuncu Rolü</li>
+                </ul>
+                <a href="#" class="buy-btn">SATIN AL</a>
             </div>
 
-            <!-- DELUXE VERSION -->
-            <div class="product-card deluxe">
-                <div class="popular-tag">EN POPÜLER</div>
-                <div>
-                    <div class="edition-name">DELUXE VERSION</div>
-                    <div class="price">2999R</div>
-                    <ul class="features">
-                        <li>Tam Oyun Erişimi + Özel Vice Neon Paketi</li>
-                        <li>Özel Süper Spor Araç ve Neon Kaplamalar</li>
-                        <li>Oyun İçi Ekstra Başlangıç Nakit Bonusu</li>
-                        <li>VIP Lobby Rozeti ve Özel Karakter Kıyafeti</li>
-                        <li>Gelecek DLC Paketlerine Öncelikli Erişim</li>
-                    </ul>
-                </div>
-                <button class="buy-btn" onclick="openShopModal('DELUXE VERSION', '2999R')">SATIN AL - 2999R</button>
+            <div class="card featured">
+                <h3>VICE KING VIP</h3>
+                <div class="price">299 ROBUX</div>
+                <ul>
+                    <li>Sınırsız VIP Araç Erişimi</li>
+                    <li>Özel Malikaneye Giriş</li>
+                    <li>2x Para Kazancı & VIP Tag</li>
+                </ul>
+                <a href="#" class="buy-btn">SATIN AL</a>
+            </div>
+
+            <div class="card">
+                <h3>CYBER BOSS</h3>
+                <div class="price">599 ROBUX</div>
+                <ul>
+                    <li>Tüm VIP Özellikleri</li>
+                    <li>Özel Süper Spor Koleksiyonu</li>
+                    <li>Erken Erişim & Kurucu Rozeti</li>
+                </ul>
+                <a href="#" class="buy-btn">SATIN AL</a>
             </div>
         </div>
     </section>
 
-    <!-- Satın Alma Bilgi Penceresi -->
-    <div class="modal-overlay" id="shopModal">
-        <div class="modal-box">
-            <h3 id="modalTitle">PAKET SEÇİLDİ</h3>
-            <p id="modalText"></p>
-            <button class="close-modal" onclick="closeShopModal()">TAMAM</button>
-        </div>
-    </div>
-
     <footer>
-        &copy; 2026 CyberNorth Games. Tüm Hakları Saklıdır.
+        &copy; 2026 CyberNorth Games. Tüm hakları saklıdır.
     </footer>
 
+    <!-- Gizli Arka Plan Müzik Oynatıcı (M83 - Midnight City) -->
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/p5aG7XCacQI?autoplay=1&loop=1&playlist=p5aG7XCacQI" title="M83 Midnight City" frameborder="0" allow="autoplay"></iframe>
+
+    <!-- Sol Alt: Müzik Kontrol Butonu -->
+    <button onclick="toggleMusic()" id="musicBtn" style="
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        background: linear-gradient(45deg, #00f3ff, #8338ec);
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 50px;
+        font-family: sans-serif;
+        font-weight: 900;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+    ">
+        🎵 MÜZİK: AÇIK
+    </button>
+
+    <!-- Sağ Alt: 7/24 Neon Destek Butonu -->
+    <a href="https://discord.gg/DISCORD_DAVET_LINKIN" target="_blank" style="
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: linear-gradient(45deg, #ff007f, #00f3ff);
+        color: #ffffff;
+        padding: 14px 24px;
+        border-radius: 50px;
+        font-family: sans-serif;
+        font-weight: 900;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        box-shadow: 0 0 20px rgba(255, 0, 127, 0.7), 0 0 30px rgba(0, 243, 255, 0.5);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 2px solid #ffffff;
+    ">
+        <span style="width: 10px; height: 10px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 10px #00ff66;"></span>
+        7/24 CANLI DESTEK
+    </a>
+
     <script>
-        // Hedef Tarih: 1 Aralık 2026 00:00:00
-        const targetDate = new Date("December 1, 2026 00:00:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance <= 0) {
-                document.getElementById("weeks").innerText = "00";
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                return;
+        let isMusicPlaying = true;
+        function toggleMusic() {
+            const iframe = document.querySelector('iframe');
+            const btn = document.getElementById('musicBtn');
+            if (isMusicPlaying) {
+                iframe.src = "";
+                btn.innerHTML = "🔇 MÜZİK: KAPALI";
+                btn.style.background = "linear-gradient(45deg, #555, #222)";
+                isMusicPlaying = false;
+            } else {
+                iframe.src = "https://www.youtube.com/embed/p5aG7XCacQI?autoplay=1&loop=1&playlist=p5aG7XCacQI";
+                btn.innerHTML = "🎵 MÜZİK: AÇIK";
+                btn.style.background = "linear-gradient(45deg, #00f3ff, #8338ec)";
+                isMusicPlaying = true;
             }
-
-            // Toplam gün hesabı
-            const totalDays = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const weeks = Math.floor(totalDays / 7);
-            const days = totalDays % 7;
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("weeks").innerText = weeks < 10 ? "0" + weeks : weeks;
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        const targetDate = new Date("December 1, 2026 20:00:00").getTime();
 
-        // Mağaza Buton İşlemi
-        function openShopModal(edition, price) {
-            document.getElementById("modalTitle").innerText = edition + " (" + price + ")";
-            document.getElementById("modalText").innerHTML = 
-                "<strong>" + edition + "</strong> paketini seçtiniz.<br><br>Satın alma bağlantısı (Roblox Game Pass / Mağaza linki) aktif edildiğinde doğrudan ödeme sayfasına yönlendirileceksiniz.";
-            document.getElementById("shopModal").style.display = "flex";
-        }
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
 
-        function closeShopModal() {
-            document.getElementById("shopModal").style.display = "none";
-        }
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            }
+        }, 1000);
     </script>
+
 </body>
 </html>
