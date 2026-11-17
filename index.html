@@ -48,7 +48,7 @@
         nav a {
             color: #d0c4e8;
             text-decoration: none;
-            margin-left: 22px;
+            margin-left: 20px;
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 1px;
@@ -341,10 +341,98 @@
             text-decoration: none;
             letter-spacing: 1px;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .buy-btn:hover {
             box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
+        }
+
+        /* Kod Kullanma (Redeem) Bölümü */
+        .redeem-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(17, 7, 34, 0.95);
+            border: 2px solid #00f3ff;
+            border-radius: 18px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.25);
+        }
+
+        .redeem-box p {
+            color: #cbbbe8;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .redeem-input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .redeem-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 2px solid #ff007f;
+            background: rgba(9, 3, 18, 0.9);
+            color: #00f3ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .redeem-input:focus {
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+        }
+
+        .redeem-btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #00f3ff, #8338ec);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .redeem-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+            transform: scale(1.03);
+        }
+
+        #redeemResult {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            min-height: 24px;
+        }
+
+        .claim-reward-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 26px;
+            background: linear-gradient(90deg, #00ff66, #00b347);
+            color: #040108;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
         }
 
         /* Online Modu Özel Alt Bölüm */
@@ -392,6 +480,7 @@
             <a href="#features">ÖZELLİKLER</a>
             <a href="#specs">SİSTEM</a>
             <a href="#shop">SHOP</a>
+            <a href="#redeem">KOD KULLAN</a>
             <a href="#online">ONLINE</a>
         </nav>
     </header>
@@ -531,6 +620,19 @@
         </div>
     </section>
 
+    <!-- KOD KULLANMA / AKTİVASYON BÖLÜMÜ -->
+    <section class="section-container" id="redeem">
+        <h2 class="section-title">OYUN KODU KULLAN</h2>
+        <div class="redeem-box">
+            <p>Özel aktivasyon koduna sahipsen aşağıya girerek <strong>Grand Real City Auto 2</strong> erişimini hemen açabilirsin!</p>
+            <div class="redeem-input-group">
+                <input type="text" id="promoCodeInput" class="redeem-input" placeholder="ÖRN: K9M2X" maxlength="10">
+                <button onclick="redeemGameCode()" class="redeem-btn">KODU ONAYLA</button>
+            </div>
+            <div id="redeemResult"></div>
+        </div>
+    </section>
+
     <!-- En Alt: ONLINE MODU ÇIKIŞ SAYACI (30 HAZİRAN) -->
     <section class="online-section" id="online">
         <div class="online-badge">MULTIPLAYER EXPANSION</div>
@@ -588,6 +690,59 @@
     ">7/24 CANLI DESTEK</a>
 
     <script>
+        // 40 Özel Oyun Aktivasyon Kodu (Şifreli Base64 formatında)
+        const encodedCodes = [
+            "SzlNMlg=", "UDRMOFI=", "VDdWM04=", "SDVCNlo=", "RDJROVc=",
+            "RjhKMVk=", "TTNDNUs=", "UjZYNFA=", "TDlON1Y=", "WjFIMkI=",
+            "VzREOFE=", "WTdGM0o=", "SzVNNkM=", "UDJSOFg=", "VDhMMU4=",
+            "SDNWN0I=", "RDZaNFc=", "RjlRMlk=", "TTFKNUM=", "UjRDOFA=",
+            "TDdYM1Y=", "WjVONkg=", "VzJCOUQ=", "WThRMUY=", "SzNKN00=",
+            "UDZDNFI=", "VDlYMkw=", "SDFONVo=", "RDRCOFc=", "RjdWM1k=",
+            "TTJRNks=", "UjVKOVA=", "TDhDMVQ=", "WjNYN0g=", "VzZONEQ=",
+            "WTFCMkY=", "SzRROU0=", "UDdKM1I=", "VDJWNkw=", "SDlDNVo="
+        ];
+
+        // Kod Doğrulama Sistemi
+        function redeemGameCode() {
+            const input = document.getElementById("promoCodeInput").value.trim().toUpperCase();
+            const resultDiv = document.getElementById("redeemResult");
+
+            if (!input) {
+                resultDiv.innerHTML = "<span style='color: #ffbe0b;'>⚠️ Lütfen bir aktivasyon kodu girin!</span>";
+                return;
+            }
+
+            // Kullanılmış kodları tarayıcı hafızasından kontrol et
+            let usedCodes = JSON.parse(localStorage.getItem("grca2_used_codes") || "[]");
+
+            if (usedCodes.includes(input)) {
+                resultDiv.innerHTML = "<span style='color: #ff007f;'>❌ Bu kod daha önce kullanıldı!</span>";
+                return;
+            }
+
+            const encodedInput = btoa(input);
+
+            if (encodedCodes.includes(encodedInput)) {
+                usedCodes.push(input);
+                localStorage.setItem("grca2_used_codes", JSON.stringify(usedCodes));
+
+                resultDiv.innerHTML = `
+                    <div style="color: #00ff66;">✅ TEBRİKLER! Kod onaylandı. Grand Real City Auto 2 erişimin açıldı!</div>
+                    <a href="OYUN_LINKINI_BURAYA_YAZ" target="_blank" class="claim-reward-btn">🎮 OYUNA GİT / İNDİR</a>
+                `;
+            } else {
+                resultDiv.innerHTML = "<span style='color: #ff3355;'>❌ Geçersiz aktivasyon kodu! Lütfen kodu kontrol edip tekrar deneyin.</span>";
+            }
+        }
+
+        // Enter tuşu ile de kod onaylama
+        document.getElementById("promoCodeInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                redeemGameCode();
+            }
+        });
+
+        // Müzik Kontrolü
         let isMusicPlaying = true;
         function toggleMusic() {
             const iframe = document.querySelector('iframe');
