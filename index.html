@@ -349,22 +349,34 @@
             box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
         }
 
-        /* Kod Kullanma (Redeem) Bölümü */
-        .redeem-box {
-            max-width: 600px;
+        /* Kod Kullanma & Fake İndirme Alanı (İki Sütunlu Yan Yana Tasarım) */
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .panel-box {
             background: rgba(17, 7, 34, 0.95);
             border: 2px solid #00f3ff;
             border-radius: 18px;
             padding: 35px 25px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.25);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
         }
 
-        .redeem-box p {
+        .panel-box.download-panel {
+            border-color: #ff007f;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.2);
+        }
+
+        .panel-box p {
             color: #cbbbe8;
-            font-size: 16px;
+            font-size: 15px;
             margin-bottom: 20px;
+            min-height: 44px;
         }
 
         .redeem-input-group {
@@ -376,7 +388,7 @@
 
         .redeem-input {
             flex: 1;
-            min-width: 200px;
+            min-width: 180px;
             padding: 14px 18px;
             border-radius: 10px;
             border: 2px solid #ff007f;
@@ -395,44 +407,79 @@
             box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
         }
 
-        .redeem-btn {
-            padding: 14px 28px;
+        .action-btn {
+            padding: 14px 24px;
             border-radius: 10px;
             background: linear-gradient(90deg, #00f3ff, #8338ec);
             color: #ffffff;
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 1px;
             border: none;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .redeem-btn:hover {
+        .action-btn:hover {
             box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
             transform: scale(1.03);
         }
 
+        .download-action-btn {
+            background: linear-gradient(90deg, #ff007f, #8338ec);
+        }
+        .download-action-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
+        }
+
         #redeemResult {
-            margin-top: 20px;
-            font-size: 16px;
+            margin-top: 15px;
+            font-size: 15px;
             font-weight: 700;
             min-height: 24px;
         }
 
-        .claim-reward-btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 12px 26px;
-            background: linear-gradient(90deg, #00ff66, #00b347);
-            color: #040108;
+        /* Fake İndirme İlerleme Barı Stilleri */
+        .progress-container {
+            margin-top: 20px;
+            display: none;
+            text-align: left;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
             font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
+            font-size: 12px;
+            color: #00f3ff;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 18px;
+            background: rgba(9, 3, 18, 0.9);
+            border: 2px solid #ff007f;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff007f, #00f3ff);
+            box-shadow: 0 0 15px #00f3ff;
+            transition: width 0.1s linear;
+        }
+
+        .download-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #b8a9d6;
+            margin-top: 8px;
         }
 
         /* Online Modu Özel Alt Bölüm */
@@ -480,7 +527,7 @@
             <a href="#features">ÖZELLİKLER</a>
             <a href="#specs">SİSTEM</a>
             <a href="#shop">SHOP</a>
-            <a href="#redeem">KOD KULLAN</a>
+            <a href="#interactive">YÜKLEME & KOD</a>
             <a href="#online">ONLINE</a>
         </nav>
     </header>
@@ -620,16 +667,43 @@
         </div>
     </section>
 
-    <!-- KOD KULLANMA / AKTİVASYON BÖLÜMÜ -->
-    <section class="section-container" id="redeem">
-        <h2 class="section-title">OYUN KODU KULLAN</h2>
-        <div class="redeem-box">
-            <p>Özel aktivasyon koduna sahipsen aşağıya girerek <strong>Grand Real City Auto 2</strong> erişimini hemen açabilirsin!</p>
-            <div class="redeem-input-group">
-                <input type="text" id="promoCodeInput" class="redeem-input" placeholder="ÖRN: K9M2X" maxlength="10">
-                <button onclick="redeemGameCode()" class="redeem-btn">KODU ONAYLA</button>
+    <!-- YAN YANA: KOD KULLAN & FAKE İNDİRME MERKEZİ -->
+    <section class="section-container" id="interactive">
+        <h2 class="section-title">OYUN ERİŞİM & İNDİRME MERKEZİ</h2>
+        <div class="interactive-grid">
+            
+            <!-- Sol Panel: Kod Kullan -->
+            <div class="panel-box">
+                <h3 style="font-family:'Orbitron',sans-serif; color:#00f3ff; margin-bottom:15px; font-size:20px;">AKTİVASYON KODU</h3>
+                <p>Özel kodun varsa girerek oyunu etkinleştir ve indirmeyi başlat.</p>
+                <div class="redeem-input-group">
+                    <input type="text" id="promoCodeInput" class="redeem-input" placeholder="K9M2X" maxlength="10">
+                    <button onclick="redeemGameCode()" class="action-btn">ONAYLA</button>
+                </div>
+                <div id="redeemResult"></div>
             </div>
-            <div id="redeemResult"></div>
+
+            <!-- Sağ Panel: Fake İndirme (250 GB - 100 MB/s Şakası) -->
+            <div class="panel-box download-panel">
+                <h3 style="font-family:'Orbitron',sans-serif; color:#ff007f; margin-bottom:15px; font-size:20px;">OYUNU İNDİR (250 GB)</h3>
+                <p id="downloadDesc">Ön yüklemeyi başlatmak için aşağıdaki butona tıkla (100 MB/s Hız).</p>
+                <button id="downloadBtn" onclick="startFakeDownload()" class="action-btn download-action-btn" style="width:100%;">ÖN YÜKLEMEYİ BAŞLAT</button>
+                
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-info">
+                        <span id="progressText">İndiriliyor... %0</span>
+                        <span id="speedText">100 MB/s</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBarFill"></div>
+                    </div>
+                    <div class="download-stats">
+                        <span id="sizeText">0 GB / 250 GB</span>
+                        <span id="timeText">Kalan: 10 dk</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -690,57 +764,86 @@
     ">7/24 CANLI DESTEK</a>
 
     <script>
-        // 40 Özel Oyun Aktivasyon Kodu (Şifreli Base64 formatında)
+        // 40 Özel Oyun Aktivasyon Kodu
         const encodedCodes = [
             "SzlNMlg=", "UDRMOFI=", "VDdWM04=", "SDVCNlo=", "RDJROVc=",
             "RjhKMVk=", "TTNDNUs=", "UjZYNFA=", "TDlON1Y=", "WjFIMkI=",
             "VzREOFE=", "WTdGM0o=", "SzVNNkM=", "UDJSOFg=", "VDhMMU4=",
             "SDNWN0I=", "RDZaNFc=", "RjlRMlk=", "TTFKNUM=", "UjRDOFA=",
-            "TDdYM1Y=", "WjVONkg=", "VzJCOUQ=", "WThRMUY=", "SzNKN00=",
+            "TDdYM1Y=", "WjVONkg=", "WzJCOUQ=", "WThRMUY=", "SzNKN00=",
             "UDZDNFI=", "VDlYMkw=", "SDFONVo=", "RDRCOFc=", "RjdWM1k=",
             "TTJRNks=", "UjVKOVA=", "TDhDMVQ=", "WjNYN0g=", "VzZONEQ=",
             "WTFCMkY=", "SzRROU0=", "UDdKM1I=", "VDJWNkw=", "SDlDNVo="
         ];
 
-        // Kod Doğrulama Sistemi
         function redeemGameCode() {
             const input = document.getElementById("promoCodeInput").value.trim().toUpperCase();
             const resultDiv = document.getElementById("redeemResult");
 
             if (!input) {
-                resultDiv.innerHTML = "<span style='color: #ffbe0b;'>⚠️ Lütfen bir aktivasyon kodu girin!</span>";
+                resultDiv.innerHTML = "<span style='color: #ffbe0b;'>⚠️ Lütfen kod girin!</span>";
                 return;
             }
 
-            // Kullanılmış kodları tarayıcı hafızasından kontrol et
             let usedCodes = JSON.parse(localStorage.getItem("grca2_used_codes") || "[]");
 
             if (usedCodes.includes(input)) {
-                resultDiv.innerHTML = "<span style='color: #ff007f;'>❌ Bu kod daha önce kullanıldı!</span>";
+                resultDiv.innerHTML = "<span style='color: #ff007f;'>❌ Bu kod zaten kullanıldı!</span>";
                 return;
             }
 
-            const encodedInput = btoa(input);
-
-            if (encodedCodes.includes(encodedInput)) {
+            if (encodedCodes.includes(btoa(input))) {
                 usedCodes.push(input);
                 localStorage.setItem("grca2_used_codes", JSON.stringify(usedCodes));
-
-                resultDiv.innerHTML = `
-                    <div style="color: #00ff66;">✅ TEBRİKLER! Kod onaylandı. Grand Real City Auto 2 erişimin açıldı!</div>
-                    <a href="OYUN_LINKINI_BURAYA_YAZ" target="_blank" class="claim-reward-btn">🎮 OYUNA GİT / İNDİR</a>
-                `;
+                resultDiv.innerHTML = "<span style='color: #00ff66;'>✅ Kod Onaylandı! Sağ taraftan indirebilirsin.</span>";
             } else {
-                resultDiv.innerHTML = "<span style='color: #ff3355;'>❌ Geçersiz aktivasyon kodu! Lütfen kodu kontrol edip tekrar deneyin.</span>";
+                resultDiv.innerHTML = "<span style='color: #ff3355;'>❌ Geçersiz aktivasyon kodu!</span>";
             }
         }
 
-        // Enter tuşu ile de kod onaylama
-        document.getElementById("promoCodeInput").addEventListener("keypress", function(e) {
-            if (e.key === "Enter") {
-                redeemGameCode();
-            }
-        });
+        // FAKE İNDİRME SİMÜLASYONU (Toplam 600 saniye = 10 dakika)
+        function startFakeDownload() {
+            const btn = document.getElementById("downloadBtn");
+            const desc = document.getElementById("downloadDesc");
+            const container = document.getElementById("progressContainer");
+            const fill = document.getElementById("progressBarFill");
+            const progressText = document.getElementById("progressText");
+            const sizeText = document.getElementById("sizeText");
+            const timeText = document.getElementById("timeText");
+
+            btn.style.display = "none";
+            desc.innerHTML = "Grand Real City Auto 2 (250 GB) indiriliyor...";
+            container.style.display = "block";
+
+            let currentPercent = 0;
+            const totalDuration = 600; // 10 dakika (saniye cinsinden)
+            let elapsed = 0;
+
+            const interval = setInterval(() => {
+                elapsed++;
+                currentPercent = (elapsed / totalDuration) * 100;
+                
+                if (currentPercent >= 100) {
+                    currentPercent = 100;
+                    clearInterval(interval);
+                    desc.innerHTML = "<span style='color:#00ff66; font-weight:900;'>🎉 İNDİRME TAMAMLANDI!</span>";
+                    progressText.innerHTML = "İndirildi %100";
+                    sizeText.innerHTML = "250 GB / 250 GB";
+                    timeText.innerHTML = "Şaka şaka! Asıl oyun 1 Ocakta çıkıyor 😄";
+                } else {
+                    fill.style.width = currentPercent + "%";
+                    progressText.innerHTML = "İndiriliyor... %" + Math.floor(currentPercent);
+                    
+                    let downloadedGB = ((currentPercent / 100) * 250).toFixed(1);
+                    sizeText.innerHTML = downloadedGB + " GB / 250 GB";
+
+                    let remainingSeconds = totalDuration - elapsed;
+                    let mins = Math.floor(remainingSeconds / 60);
+                    let secs = remainingSeconds % 60;
+                    timeText.innerHTML = `Kalan: ${mins} dk ${secs} sn`;
+                }
+            }, 1000); // Her 1 saniyede bir güncellenir (tam 10 dakikada biter)
+        }
 
         // Müzik Kontrolü
         let isMusicPlaying = true;
@@ -761,19 +864,14 @@
         }
 
         const today = new Date();
-        // 1. Fragman (Bugün 18:00)
         const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0, 0).getTime();
-        // 2. Detaylı Oyun Bakışı (23 Kasım 2026, 00:00:00)
         const overviewDate = new Date("November 23, 2026 00:00:00").getTime();
-        // 3. Oyun Çıkışı (1 Ocak 2027)
         const releaseDate = new Date("January 1, 2027 00:00:00").getTime();
-        // 4. Online Çıkışı (30 Haziran 2027)
         const onlineDate = new Date("June 30, 2027 00:00:00").getTime();
 
         setInterval(() => {
             const now = new Date().getTime();
 
-            // 1. Fragman Sayacı (Sadece Dakika ve Saniye)
             const trailerDiff = trailerDate - now;
             if (trailerDiff > 0) {
                 const totalMinutes = Math.floor(trailerDiff / (1000 * 60));
@@ -784,24 +882,16 @@
                 document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'><a href='https://www.youtube.com/watch?v=B4pyXhO2hb8' target='_blank' style='color:#00ff66; text-decoration:underline;'>FRAGMAN YAYINLANDI! İZLEMEK İÇİN TIKLA</a></div>";
             }
 
-            // 2. Detaylı Oyun Bakışı Sayacı (23 Kasım - Hafta, Gün, Saat, Dakika, Saniye)
             const overviewDiff = overviewDate - now;
             if (overviewDiff > 0) {
                 const ovTotalSec = Math.floor(overviewDiff / 1000);
-                const ovWeeks = Math.floor(ovTotalSec / (7 * 24 * 60 * 60));
-                const ovDays = Math.floor((ovTotalSec % (7 * 24 * 60 * 60)) / (24 * 60 * 60));
-                const ovHours = Math.floor((ovTotalSec % (24 * 60 * 60)) / (60 * 60));
-                const ovMinutes = Math.floor((ovTotalSec % (60 * 60)) / 60);
-                const ovSeconds = ovTotalSec % 60;
-
-                document.getElementById("ov-weeks").innerText = String(ovWeeks).padStart(2, '0');
-                document.getElementById("ov-days").innerText = String(ovDays).padStart(2, '0');
-                document.getElementById("ov-hours").innerText = String(ovHours).padStart(2, '0');
-                document.getElementById("ov-minutes").innerText = String(ovMinutes).padStart(2, '0');
-                document.getElementById("ov-seconds").innerText = String(ovSeconds).padStart(2, '0');
+                document.getElementById("ov-weeks").innerText = String(Math.floor(ovTotalSec / (7 * 24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("ov-days").innerText = String(Math.floor((ovTotalSec % (7 * 24 * 60 * 60)) / (24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("ov-hours").innerText = String(Math.floor((ovTotalSec % (24 * 60 * 60)) / (60 * 60))).padStart(2, '0');
+                document.getElementById("ov-minutes").innerText = String(Math.floor((ovTotalSec % (60 * 60)) / 60)).padStart(2, '0');
+                document.getElementById("ov-seconds").innerText = String(ovTotalSec % 60).padStart(2, '0');
             }
 
-            // 3. Oyun Çıkış Sayacı (Ay, Hafta, Gün, Saat, Dakika, Saniye)
             const releaseDiff = releaseDate - now;
             if (releaseDiff > 0) {
                 const totalSec = Math.floor(releaseDiff / 1000);
@@ -813,21 +903,14 @@
                 document.getElementById("r-seconds").innerText = String(totalSec % 60).padStart(2, '0');
             }
 
-            // 4. Online Modu Çıkış Sayacı (30 Haziran - Ay, Gün, Saat, Dakika, Saniye)
             const onlineDiff = onlineDate - now;
             if (onlineDiff > 0) {
                 const oTotalSec = Math.floor(onlineDiff / 1000);
-                const oMonths = Math.floor(oTotalSec / (30 * 24 * 60 * 60));
-                const oDays = Math.floor((oTotalSec % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
-                const oHours = Math.floor((oTotalSec % (24 * 60 * 60)) / (60 * 60));
-                const oMinutes = Math.floor((oTotalSec % (60 * 60)) / 60);
-                const oSeconds = oTotalSec % 60;
-
-                document.getElementById("o-months").innerText = String(oMonths).padStart(2, '0');
-                document.getElementById("o-days").innerText = String(oDays).padStart(2, '0');
-                document.getElementById("o-hours").innerText = String(oHours).padStart(2, '0');
-                document.getElementById("o-minutes").innerText = String(oMinutes).padStart(2, '0');
-                document.getElementById("o-seconds").innerText = String(oSeconds).padStart(2, '0');
+                document.getElementById("o-months").innerText = String(Math.floor(oTotalSec / (30 * 24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("o-days").innerText = String(Math.floor((oTotalSec % (30 * 24 * 60 * 60)) / (24 * 60 * 60))).padStart(2, '0');
+                document.getElementById("o-hours").innerText = String(Math.floor((oTotalSec % (24 * 60 * 60)) / (60 * 60))).padStart(2, '0');
+                document.getElementById("o-minutes").innerText = String(Math.floor((oTotalSec % (60 * 60)) / 60)).padStart(2, '0');
+                document.getElementById("o-seconds").innerText = String(oTotalSec % 60).padStart(2, '0');
             }
         }, 1000);
     </script>
