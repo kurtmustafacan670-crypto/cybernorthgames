@@ -549,9 +549,9 @@
             </div>
         </div>
 
-        <!-- 2. Geri Sayım: Detaylı Oyun Bakışı (Bugün Saat 18:00 - Dakika ve Saniye) -->
+        <!-- 2. Geri Sayım: Detaylı Oyun Bakışı (Bugün Saat 18:20 - Dakika ve Saniye) -->
         <div class="countdown-container">
-            <div class="countdown-title" style="color: #00f3ff;">GRAND REAL CITY AUTO 2 DETAYLI OYUN BAKIŞI (BUGÜN 18:00)</div>
+            <div class="countdown-title" style="color: #00f3ff;">GRAND REAL CITY AUTO 2 DETAYLI OYUN BAKIŞI (BUGÜN 18:20)</div>
             <div class="countdown" id="overviewCountdown">
                 <div class="time-box"><span id="ov-minutes">00</span><small>DAKİKA</small></div>
                 <div class="time-box"><span id="ov-seconds">00</span><small>SANİYE</small></div>
@@ -798,6 +798,13 @@
             }
         }
 
+        // Enter tuşu ile kod onaylama
+        document.getElementById("promoCodeInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                redeemGameCode();
+            }
+        });
+
         // FAKE İNDİRME SİMÜLASYONU (10 dakika)
         function startFakeDownload() {
             const btn = document.getElementById("downloadBtn");
@@ -863,8 +870,8 @@
         const today = new Date();
         // 1. Fragman (Bugün 18:00)
         const trailerDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0, 0).getTime();
-        // 2. Detaylı Oyun Bakışı (Bugün Saat 18:00)
-        const overviewDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0, 0).getTime();
+        // 2. Detaylı Oyun Bakışı (Bugün Saat 18:20)
+        const overviewDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 20, 0).getTime();
         // 3. Oyun Çıkışı (15 Şubat 2027)
         const releaseDate = new Date("February 15, 2027 00:00:00").getTime();
         // 4. Online Çıkışı (30 Haziran 2027)
@@ -884,7 +891,7 @@
                 document.getElementById("trailerCountdown").innerHTML = "<div style='color:#00ff66; font-weight:900; font-size:18px;'><a href='https://www.youtube.com/watch?v=B4pyXhO2hb8' target='_blank' style='color:#00ff66; text-decoration:underline;'>FRAGMAN YAYINLANDI! İZLEMEK İÇİN TIKLA</a></div>";
             }
 
-            // 2. Detaylı Oyun Bakışı Sayacı (Bugün 18:00 - Sadece Dakika ve Saniye)
+            // 2. Detaylı Oyun Bakışı Sayacı (Bugün 18:20 - Sadece Dakika ve Saniye)
             const overviewDiff = overviewDate - now;
             if (overviewDiff > 0) {
                 const ovTotalMinutes = Math.floor(overviewDiff / (1000 * 60));
